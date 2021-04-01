@@ -2,14 +2,15 @@ import React from 'react';
 
 import {Container} from './styles';
 
-const SideMenu = () =>{
+
+const Header = () =>{
     return (
         <Container>
             <h1>
-                menu lateral
+                header
             </h1>
         </Container>
     );
 }
 
-export default SideMenu;
+export default Header;

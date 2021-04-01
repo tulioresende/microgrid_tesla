@@ -3,7 +3,7 @@ import firebase from './firebase/firebase';
 import { useState } from 'react';
 import './App.css';
 
-import Components from './components';
+import Pages from './pages';
 
 function App() {
 
@@ -23,29 +23,7 @@ function App() {
 
 
   return (
-    <div className="App">
-           <Components.SideMenu/>
-        <header className="App-header">
-        <p>
-          {`valor de value2: ${value}`}
-        </p>
-        <p>
-          Teste inicial de deploy do supervisório Tesla com o firebase!
-        </p>
-        <button onClick={getData}>
-          buscar dados
-        </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-    </div>
+    <Pages.MainMenu/>
   );
 }
 
