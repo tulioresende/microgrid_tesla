@@ -3,6 +3,8 @@ import firebase from './firebase/firebase';
 import { useState } from 'react';
 import './App.css';
 
+import Components from './components';
+
 function App() {
 
   const [value, setValue] = useState("valor default");
@@ -22,8 +24,8 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+           <Components.SideMenu/>
+        <header className="App-header">
         <p>
           {`valor de value2: ${value}`}
         </p>
@@ -42,6 +44,7 @@ function App() {
           Learn React
         </a>
       </header>
+
     </div>
   );
 }
