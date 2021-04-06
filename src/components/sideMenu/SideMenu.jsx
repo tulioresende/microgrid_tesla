@@ -1,10 +1,18 @@
 import React from 'react';
 
-import {Container} from './styles';
+import TeslaIcon from '../../assets/jpeg/logoteslaV2.jpeg';
+
+
+import {Container, Image} from './styles';
+
 
 const SideMenu = () =>{
+
+   
+
     return (
         <Container>
+            <Image src={TeslaIcon}/>
             <h1>
                 menu lateral
             </h1>
