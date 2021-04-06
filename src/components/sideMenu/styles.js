@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Image = styled.img`
     width:80%;
-    height:12%;
+    height:6%;
     display: flex;
 `;
 
@@ -21,7 +21,6 @@ export const MenuTitle = styled.text`
     color: ${Colors.green};
     font-size: 30px;
     margin-top: 18px;
-
 `;
 
 export const MenuItem = styled.text`
