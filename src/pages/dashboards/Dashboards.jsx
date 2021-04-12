@@ -1,13 +1,16 @@
 import React from 'react';
 
+import DashboardItem from '../../components/dashboardItem/DashboardItem';
+
+import Icons from '../../globalVariables/componentsControl/DashboardItemControl';
+
 import Container from './styles';
 
 const Dashboards = () =>{
     return (
         <Container>
-            <h1>
-                dashboards
-            </h1>
+            <DashboardItem icon= {Icons.battery} />
+            <DashboardItem icon= {Icons.powerLine} />
         </Container>
     );
 }
