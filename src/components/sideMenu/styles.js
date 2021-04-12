@@ -8,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
     background: ${Colors.white};
     height: 100%;
-    padding: 36px 18px  ;
+    padding: 18px 18px  ;
 `;
 
 export const Image = styled.img`
