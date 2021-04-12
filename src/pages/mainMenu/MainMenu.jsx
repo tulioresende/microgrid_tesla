@@ -11,13 +11,7 @@ import {
 
 const MainMenu = () =>{
     return (
-        <Container>
-            <Components.SideMenu/>
-            <SubContainer>
-                <Components.Header/>
-                <Pages.Dashboards/>
-            </SubContainer>
-        </Container>
+        <Pages.Dashboards/>
     );
 }
 

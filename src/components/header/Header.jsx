@@ -11,7 +11,7 @@ import {
 } from './styles';
 
 
-const Header = () =>{
+const Header = ({titleText='Título Padrão'}) =>{
     return (
         <Container>
             <SubContainer>
@@ -19,7 +19,7 @@ const Header = () =>{
             </SubContainer>
             <SubContainer>
                 <Title>
-                    header
+                    {titleText}
                 </Title>
             </SubContainer>
             <SubContainer>

@@ -7,6 +7,7 @@ import Icons from '../../globalVariables/componentsControl/DashboardItemControl'
 
 import {
 Container,
+Title,
 }
 from './styles';
 
@@ -17,12 +18,24 @@ const DashboardItem = ({
     const getIcon = (icon) =>{
         switch(icon){
             case Icons.battery:
-                return <Battery />;
+                return (
+                    <>
+                        <Battery />
+                        <Title>Baterias</Title>
+                    </>
+                );
             case Icons.powerLine:
             default: 
-                return <PowerLine/>;
+                return (
+                    <>
+                        <PowerLine/>
+                        <Title>Teste</Title>
+                    </>
+                );
         }
     }
+
+    
 
     return (
         <Container>
