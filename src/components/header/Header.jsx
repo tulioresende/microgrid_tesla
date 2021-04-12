@@ -1,5 +1,7 @@
 import React from 'react';
-import MenuImage from '../../assets/png/list.png';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import User from '../../assets/png/profile-user.png';
 
 import {
@@ -15,7 +17,7 @@ const Header = ({titleText='Título Padrão'}) =>{
     return (
         <Container>
             <SubContainer>
-                <MenuImg src={MenuImage}/>
+                <FontAwesomeIcon icon={faBars} color={'white'} size="2x"/>
             </SubContainer>
             <SubContainer>
                 <Title>

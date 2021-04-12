@@ -16,7 +16,13 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
+    : hover {
+        background: ${Colors.greenLight};
+    }
+    border-radius: 24px;
+    height: 48px;
+    width: 48px;
 `;
 
 
@@ -35,6 +41,8 @@ export const UserName = styled.text`
 export const MenuImg = styled.img`
     height:40px;
 `;
+
+
 
 
 export default Container;
