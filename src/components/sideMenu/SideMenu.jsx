@@ -11,22 +11,25 @@ import {
 } from './styles';
 
 
-const SideMenu = () =>{
+const SideMenu = ({visible=true}) =>{
 
-    return (
-        <Container>
-            <Image src={TeslaIcon}/>
-            <MenuTitle>
-                Menu Principal
-            </MenuTitle>
-            <MenuItem>
-                Dashboards
-            </MenuItem>
-            <MenuItem>
-                Controles
-            </MenuItem>
-        </Container>
-    );
+    if (visible){
+        return (
+            <Container>
+                <Image src={TeslaIcon}/>
+                <MenuTitle>
+                    Menu Principal
+                </MenuTitle>
+                <MenuItem>
+                    Dashboards
+                </MenuItem>
+                <MenuItem>
+                    Controles
+                </MenuItem>
+            </Container>
+        );
+    }
+    return null;
 }
 
 export default SideMenu;

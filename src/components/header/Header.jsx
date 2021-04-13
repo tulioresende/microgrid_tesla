@@ -13,10 +13,14 @@ import {
 } from './styles';
 
 
-const Header = ({titleText='Título Padrão'}) =>{
+const Header = ({
+    onClickMenuIconFunc,
+    titleText,
+}) =>{
+
     return (
         <Container>
-            <SubContainer>
+            <SubContainer onClick ={onClickMenuIconFunc}>
                 <FontAwesomeIcon icon={faBars} color={'white'} size="2x"/>
             </SubContainer>
             <SubContainer>
