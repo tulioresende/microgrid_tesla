@@ -13,9 +13,8 @@ import {
 
 const SideMenu = ({visible=true}) =>{
 
-    if (visible){
         return (
-            <Container>
+            <Container width={visible?"256":"0"}>
                 <Image src={TeslaIcon}/>
                 <MenuTitle>
                     Menu Principal
@@ -28,8 +27,6 @@ const SideMenu = ({visible=true}) =>{
                 </MenuItem>
             </Container>
         );
-    }
-    return null;
 }
 
 export default SideMenu;

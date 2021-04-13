@@ -10,6 +10,7 @@ import {
     MenuImg,
     SubContainer,
     UserName,
+    SubContainerIcon,
 } from './styles';
 
 
@@ -20,9 +21,9 @@ const Header = ({
 
     return (
         <Container>
-            <SubContainer onClick ={onClickMenuIconFunc}>
+            <SubContainerIcon onClick ={onClickMenuIconFunc}>
                 <FontAwesomeIcon icon={faBars} color={'white'} size="2x"/>
-            </SubContainer>
+            </SubContainerIcon>
             <SubContainer>
                 <Title>
                     {titleText}
