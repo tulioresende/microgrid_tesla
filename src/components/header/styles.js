@@ -25,6 +25,7 @@ export const SubContainerIcon = styled.div`
     align-items: center;
     : hover {
         background: ${Colors.greenLight};
+        cursor: pointer;
     }
     border-radius: 24px;
     height: 48px;

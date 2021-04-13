@@ -13,6 +13,7 @@ export const Container = styled.div`
 
     :hover {
         box-shadow: 0 4px 8px 0 rgba(0, 110, 0, 0.2), 0 6px 20px 0 rgba(0, 200, 0, 0.19);
+        cursor: pointer;
     }
 
 `;

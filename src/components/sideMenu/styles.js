@@ -32,12 +32,13 @@ export const MenuItem = styled.text`
     color: ${Colors.green};
     font-size: 26px;
     margin-top: 12px;
-    margin-left: 48px;
+    margin-left: 24px;
+    align-self: start;
     font-weight: bold;
-    width: 100%;
     :hover {
         background-color: ${Colors.green};
         color: ${Colors.white};
+        cursor: pointer;
     }
 `;
 
