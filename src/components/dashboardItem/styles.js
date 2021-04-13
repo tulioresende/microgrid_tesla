@@ -20,6 +20,7 @@ export const Container = styled.div`
 
 export const Title = styled.text`
     color: ${Colors.green};
+    margin-vertical: 16px;
 `;
 
 export default Container;

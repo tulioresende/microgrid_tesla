@@ -2,6 +2,7 @@ import React from 'react';
 
 import Battery from '../../assets/svg/Battery';
 import PowerLine from '../../assets/svg/PowerLine';
+import Colors from '../../globalVariables/Colors';
 
 import Icons from '../../globalVariables/componentsControl/DashboardItemControl';
 
@@ -20,7 +21,7 @@ const DashboardItem = ({
             case Icons.battery:
                 return (
                     <>
-                        <Battery />
+                        <Battery color={Colors.green}/>
                         <Title>Baterias</Title>
                     </>
                 );
@@ -28,8 +29,8 @@ const DashboardItem = ({
             default: 
                 return (
                     <>
-                        <PowerLine/>
-                        <Title>Teste</Title>
+                        <PowerLine color={Colors.green}/>
+                        <Title>Rede de Dist.</Title>
                     </>
                 );
         }
