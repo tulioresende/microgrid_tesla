@@ -1,5 +1,7 @@
 import React from 'react';
-import MenuImage from '../../assets/png/list.png';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import User from '../../assets/png/profile-user.png';
 
 import {
@@ -8,18 +10,23 @@ import {
     MenuImg,
     SubContainer,
     UserName,
+    SubContainerIcon,
 } from './styles';
 
 
-const Header = () =>{
+const Header = ({
+    onClickMenuIconFunc,
+    titleText,
+}) =>{
+
     return (
         <Container>
-            <SubContainer>
-                <MenuImg src={MenuImage}/>
-            </SubContainer>
+            <SubContainerIcon onClick ={onClickMenuIconFunc}>
+                <FontAwesomeIcon icon={faBars} color={'white'} size="2x"/>
+            </SubContainerIcon>
             <SubContainer>
                 <Title>
-                    header
+                    {titleText}
                 </Title>
             </SubContainer>
             <SubContainer>
