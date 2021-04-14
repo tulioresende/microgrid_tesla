@@ -27,8 +27,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route path="/dashboards">
           <Pages.Dashboards/>
+        </Route>
+        <Route>
+          <Pages.NotFound/>
         </Route>
       </Switch>
     </Router>
