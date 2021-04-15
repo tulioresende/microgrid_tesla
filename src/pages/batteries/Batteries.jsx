@@ -6,13 +6,12 @@ import Icons from '../../globalVariables/componentsControl/DashboardItemControl'
 
 import PageStructure from '../../components/pageStructure/PageStructure';
 
-const Dashboards = () =>{
+const Batteries = () =>{
 
     const renderFunction = () =>{
         return(
             <>
-                <DashboardItem icon= {Icons.battery} routeAddress={'batteries'}/>
-                <DashboardItem icon= {Icons.powerLine} routeAddress={'mainGrid'}/>
+                <DashboardItem icon= {Icons.battery} routeAddress={'battery'}/>
             </>
         )
     }
@@ -22,4 +21,4 @@ const Dashboards = () =>{
     );
 }
 
-export default Dashboards;
+export default Batteries;
