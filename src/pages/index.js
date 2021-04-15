@@ -1,9 +1,10 @@
-import MainMenu from './mainMenu/MainMenu';
 import Dashboards from './dashboards/Dashboards';
+import NotFound from './notFound/NotFound';
+
 
 const Pages = {
-    MainMenu,
     Dashboards,
+    NotFound,
 }
 
 export default Pages;

@@ -1,9 +1,13 @@
-import logo from './logo.svg';
 import firebase from './firebase/firebase';
 import { useState } from 'react';
 import './App.css';
 
 import Pages from './pages';
+import { 
+  Route,   
+  BrowserRouter as Router ,
+  Switch,
+} from 'react-router-dom';
 
 function App() {
 
@@ -20,10 +24,17 @@ function App() {
 
     });
   }
-
-
   return (
-    <Pages.MainMenu/>
+    <Router>
+      <Switch>
+        <Route path="/dashboards">
+          <Pages.Dashboards/>
+        </Route>
+        <Route>
+          <Pages.NotFound/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
