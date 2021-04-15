@@ -1,8 +1,7 @@
 import React from 'react';
 
 import BatteryStatus from '../../../globalVariables/cardStatusBatteryControl/CardStatusBatteryControl';
-import Battery from '../../../assets/svg/Battery';
-import EmptyBattery from '../../../assets/svg/EmptyBattery';
+import SvgIcons from '../../../assets/svg';
 import {Colors} from '../../../globalVariables/Colors';
 
 
@@ -13,48 +12,49 @@ import {
     TitleName,
 }
 from './styles';
+import { getIcon, iconList, setDisconnectedDefaultValue } from './Controls';
 
 const CardStatusBattery = ({
-    status= 1,//BatteryStatus.disconnected,
+    status= BatteryStatus.disconnected,
     chargeState = 0,
     voltage = 0,
     current = 0,
     name = 'bateria sem nome',
 }) =>{
 
-    const getIcon = (status, chargeState) =>{
-        switch(status){
-            case BatteryStatus.disconnected:
-                return (
-                    <Battery color={Colors.green}/>
-                );
-            default:{
-                switch(chargeState){
-                    case 0:
-                        return (
-                            <EmptyBattery color={Colors.green}/>
-                    );
-                    default:
-                        return (
-                            <Battery color={Colors.green}/>
-                        );
-                }
+    const setIcon = (status, chargeState) =>{
+        const icon = getIcon(status, chargeState);
+
+        switch(icon){
+            case iconList.emptyBattery:
+                return <SvgIcons.EmptyBattery color={Colors.green}/>
+            case iconList.fullBattery:
+                return <SvgIcons.FullBattery color={Colors.green}/>
+            case iconList.threeFourBattery:
+                return <SvgIcons.ThreeFourBattery color={Colors.green}/>
+            case iconList.disconnectedBattery:
+                return <SvgIcons.DisconnectedBattery color={Colors.green}/>
+            case iconList.halfBattery:
+                return <SvgIcons.HalfBattery color={Colors.green}/>
+            case iconList.oneFourBattery:
+                return <SvgIcons.OneFourBattery color={Colors.green}/>
+            default:
+                return <SvgIcons.DisconnectedBattery color={Colors.green}/>
             } 
-                
         }
-    }
+
 
     return (
         <Container>
             <TitleName>{name}</TitleName>
-            {getIcon(status,chargeState)}
+            {setIcon(status,chargeState)}
             <Title>{`Status: ${status}`}</Title>
-            <Title>{`Estado Carga: ${chargeState}%`}</Title>
+            <Title>{`Estado Carga: ${setDisconnectedDefaultValue(`${chargeState}%`, status)}`}</Title>
             <Line>
-                <Title>{`Tensão: ${voltage} V`}</Title>
-                <Title>{`Corrente: ${current} A`}</Title>
+                <Title>{`Tensão: ${setDisconnectedDefaultValue(`${voltage} V`,status)}`}</Title>
+                <Title>{`Corrente: ${setDisconnectedDefaultValue(`${current} A`,status)}`}</Title>
                 </Line>
-                <Title>{`Potência: ${voltage*current} W`}</Title>
+                <Title>{`Potência: ${setDisconnectedDefaultValue(`${voltage*current} W`,status)}`}</Title>
         </Container>
     );
 }

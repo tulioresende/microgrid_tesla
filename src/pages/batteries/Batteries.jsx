@@ -9,7 +9,13 @@ const Batteries = () =>{
     const renderFunction = () =>{
         return(
             <>
-                <Cards.CardStatusBattery name='litio' current={10} voltage={120} status={BatteryStatus.charging} chargeState={80}/>
+                <Cards.CardStatusBattery 
+                    name='litio' 
+                    current={1} 
+                    voltage={125} 
+                    status={BatteryStatus.discharging} 
+                    chargeState={70}
+                />
             </>
         )
     }

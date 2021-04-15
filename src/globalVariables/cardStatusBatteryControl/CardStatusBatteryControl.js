@@ -1,6 +1,6 @@
 const BatteryStatus = {
     standby: 'Stand-By',
-    discharging: 'Descarga',
+    discharging: 'Descarregando',
     charging: 'Carregando',
     disconnected: 'Desconectado',
 };
