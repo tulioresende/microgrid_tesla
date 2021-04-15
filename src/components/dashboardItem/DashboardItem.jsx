@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Battery from '../../assets/svg/Battery';
 import PowerLine from '../../assets/svg/PowerLine';
@@ -13,9 +14,13 @@ Title,
 from './styles';
 
 const DashboardItem = ({
-    icon='Battery'
+    icon='Battery',
+    routeAddress = 'dashboards',
 }) =>{
 
+    const history = useHistory();
+    const handleOnClick = () => history.push(`/${routeAddress}`);
+    
     const getIcon = (icon) =>{
         switch(icon){
             case Icons.battery:
@@ -36,10 +41,8 @@ const DashboardItem = ({
         }
     }
 
-    
-
     return (
-        <Container>
+        <Container onClick = {handleOnClick}>
             {getIcon(icon)}
         </Container>
     );
