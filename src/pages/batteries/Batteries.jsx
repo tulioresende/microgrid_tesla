@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import Cards from '../../components/cards';
 import PageStructure from '../../components/pageStructure/PageStructure';
 import getBatteriesCurrentData from '../../firebase/services/batteries/Batteries';
-import { BatteryStatusTranslate } from './control';
+import { BatteryStatusTranslate } from '../../utils/functions/Batteries';
 
 const Batteries = () =>{
     const [batteriesData, setBatteriesData] = useState([]);
 
     useEffect(() =>{
         setBatteriesData(getBatteriesCurrentData());
-    },[batteriesData]);
+    },[]);
 
     const renderFunction = () =>{
         return(

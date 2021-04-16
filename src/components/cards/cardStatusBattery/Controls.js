@@ -1,4 +1,4 @@
-import BatteryStatus from "../../../globalVariables/cardStatusBatteryControl/CardStatusBatteryControl";
+import { BatteryStatus } from "../../../globalVariables/Batteries";
 
 export const iconList = {
     emptyBattery: `emptyBattery`,

@@ -1,19 +1,14 @@
-export const BatteryStatus = {
-    standby: 'Stand-By',
-    discharging: 'Descarregando',
-    charging: 'Carregando',
-    disconnected: 'Desconectado',
-};
+import { BatteryStatus } from "../../globalVariables/Batteries";
 
 export const BatteryStatusTranslate = (valueFromBD) =>{
     switch(valueFromBD){
         case 'carga':
             return BatteryStatus.charging;
-        case 'Stand-By':
+        case 'stand-by':
             return BatteryStatus.standby;
         case 'descarga':
             return BatteryStatus.discharging;
-        case 'Desconectado':
+        case 'desconectado':
         default :
             return BatteryStatus.disconnected;
     }
