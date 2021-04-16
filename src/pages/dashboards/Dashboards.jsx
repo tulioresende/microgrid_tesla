@@ -11,7 +11,7 @@ const Dashboards = () =>{
     const renderFunction = () =>{
         return(
             <>
-                <DashboardItem icon= {Icons.battery} routeAddress={'battery'}/>
+                <DashboardItem icon= {Icons.battery} routeAddress={'batteries'}/>
                 <DashboardItem icon= {Icons.powerLine} routeAddress={'mainGrid'}/>
             </>
         )

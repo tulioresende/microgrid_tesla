@@ -31,6 +31,9 @@ function App() {
           <Pages.Dashboards/>
         </Route>
         <Route>
+          <Pages.Batteries path="/batteries"/>
+        </Route>
+        <Route>
           <Pages.NotFound/>
         </Route>
       </Switch>
