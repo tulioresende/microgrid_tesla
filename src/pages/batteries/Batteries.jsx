@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Cards from '../../components/cards';
 import PageStructure from '../../components/pageStructure/PageStructure';
-import BatteryStatus from '../../globalVariables/cardStatusBatteryControl/CardStatusBatteryControl';
+import getBatteriesCurrentData from '../../firebase/services/batteries/Batteries';
+import { BatteryStatusTranslate } from './control';
 
 const Batteries = () =>{
+    const [batteriesData, setBatteriesData] = useState([]);
+
+    useEffect(() =>{
+        setBatteriesData(getBatteriesCurrentData());
+    },[batteriesData]);
 
     const renderFunction = () =>{
         return(
             <>
-                <Cards.CardStatusBattery 
-                    name='litio' 
-                    current={1} 
-                    voltage={125} 
-                    status={BatteryStatus.discharging} 
-                    chargeState={70}
-                />
+                {batteriesData.map((battery) => 
+                    <Cards.CardStatusBattery 
+                        name={battery.nome} 
+                        current={battery.corrente} 
+                        voltage={battery.tensao} 
+                        status={BatteryStatusTranslate(battery.status)} 
+                        chargeState={battery.estadoCarga}
+                    />)
+                }
             </>
         )
     }
