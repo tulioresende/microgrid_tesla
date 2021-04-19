@@ -15,7 +15,7 @@ import {
 const SideMenu = ({visible=true}) =>{
 
     const history = useHistory();
-    const handleOnClick = () => history.push(`/dashboards`);
+    const handleOnClick = (route) => history.push(route);
 
     return (
         <Container width={visible?"256":"0"}>
@@ -23,10 +23,10 @@ const SideMenu = ({visible=true}) =>{
             <MenuTitle>
                 Menu Principal
             </MenuTitle>
-            <MenuItem onClick={handleOnClick}>
+            <MenuItem onClick={() => handleOnClick(`/dashboards`)}>
                 Dashboards
             </MenuItem>
-            <MenuItem>
+            <MenuItem onClick={() => handleOnClick(`/login`)}>
                 Controles
             </MenuItem>
         </Container>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -12,12 +12,19 @@ import {
     UserName,
     SubContainerIcon,
 } from './styles';
+import { firebaseAuth } from '../../provider/AuthProvider';
 
 
 const Header = ({
     onClickMenuIconFunc,
     titleText,
 }) =>{
+
+    const {handleSignout} = useContext(firebaseAuth);
+
+    const logOut = () =>{
+        handleSignout();
+    }
 
     return (
         <Container>
@@ -33,6 +40,9 @@ const Header = ({
                 <MenuImg src={User}/>
                 <UserName>
                     Usuário
+                </UserName>
+                <UserName onClick ={logOut}>
+                    Sair
                 </UserName>
             </SubContainer>
         </Container>
