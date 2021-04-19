@@ -8,7 +8,7 @@ import {
     MainContainer,
  } from './styles';
 
-const PageStructure = ({renderFunction}) =>{
+const PageStructure = ({renderFunction, pageTitle="sem titulo"}) =>{
 
     const [sideMenuVisible, setSideMenuVisible] = useState(false);
 
@@ -16,7 +16,7 @@ const PageStructure = ({renderFunction}) =>{
         <Container>
             <Components.SideMenu visible={sideMenuVisible}/>
             <SubContainer>
-                <Components.Header titleText={'Dashboard'}  onClickMenuIconFunc={() => setSideMenuVisible(!sideMenuVisible)} />
+                <Components.Header titleText={pageTitle}  onClickMenuIconFunc={() => setSideMenuVisible(!sideMenuVisible)} />
                 <MainContainer>
                     {renderFunction()}
                 </MainContainer>

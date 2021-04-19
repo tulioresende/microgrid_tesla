@@ -1,44 +1,47 @@
-import firebase from './firebase/firebase';
-import { useState } from 'react';
+import React, { useContext } from 'react';
 import './App.css';
-
 import Pages from './pages';
 import { 
   Route,   
   BrowserRouter as Router ,
   Switch,
 } from 'react-router-dom';
+import { firebaseAuth } from './provider/AuthProvider';
+
 
 function App() {
 
-  const [value, setValue] = useState("valor default");
- 
-
-  const getData = () =>{
-    const supervisory = firebase.database().ref('supervisorio');
-    supervisory.on('value', (snapshot) => {
-      let inputs = snapshot.val();
-      for(let input in inputs){
-        setValue(inputs[input].value);
-      }
-
-    });
+  const { getToken } = useContext(firebaseAuth);
+  const token = getToken();
+  
+  if (token === null){
+    return (
+      <Router>
+        <Switch>
+          <Route>
+            <Pages.Login />
+          </Route>
+        </Switch>
+      </Router>
+    );
   }
-  return (
-    <Router>
-      <Switch>
-        <Route path="/dashboards">
-          <Pages.Dashboards/>
-        </Route>
-        <Route>
-          <Pages.Batteries path="/batteries"/>
-        </Route>
-        <Route>
-          <Pages.NotFound/>
-        </Route>
-      </Switch>
-    </Router>
-  );
+  else{
+    return(
+      <Router>
+        <Switch>
+          <Route exact path="/dashboards">
+            <Pages.Dashboards/>
+          </Route>
+          <Route exact path="/batteries">
+            <Pages.Batteries />
+          </Route>
+          <Route>
+            <Pages.NotFound/>
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;

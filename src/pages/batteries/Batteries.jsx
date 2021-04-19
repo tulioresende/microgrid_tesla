@@ -29,7 +29,7 @@ const Batteries = () =>{
     }
 
     return (
-        <PageStructure renderFunction={renderFunction}/>
+        <PageStructure renderFunction={renderFunction} pageTitle={"Baterias"}/>
     );
 }
 

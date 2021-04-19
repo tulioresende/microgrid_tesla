@@ -18,7 +18,7 @@ const Dashboards = () =>{
     }
 
     return (
-        <PageStructure renderFunction={renderFunction}/>
+        <PageStructure renderFunction={renderFunction} pageTitle={"Dashboards"}/>
     );
 }
 
