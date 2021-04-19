@@ -1,6 +1,5 @@
 import React from 'react';
 
-import BatteryStatus from '../../../globalVariables/cardStatusBatteryControl/CardStatusBatteryControl';
 import SvgIcons from '../../../assets/svg';
 import {Colors} from '../../../globalVariables/Colors';
 
@@ -13,6 +12,7 @@ import {
 }
 from './styles';
 import { getIcon, iconList, setDisconnectedDefaultValue } from './Controls';
+import { BatteryStatus } from '../../../globalVariables/Batteries';
 
 const CardStatusBattery = ({
     status= BatteryStatus.disconnected,
