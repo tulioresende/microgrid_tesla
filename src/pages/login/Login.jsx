@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import Inputs from '../../components/inputs';
 import { firebaseAuth } from '../../provider/AuthProvider';
 
 
@@ -19,8 +20,20 @@ const Login = () => {
     return (
         <div>
             Login
-            <input onChange={handleChange} name="email" placeholder='email' value={inputs.email} />
-            <input onChange={handleChange} name="password" placeholder='password' value={inputs.password} />
+            <Inputs.LoginInput 
+                onChangeFunc={handleChange} 
+                name="email" 
+                placeholder='email' 
+                value={inputs.email}
+                isPassword={false}
+            />
+            <Inputs.LoginInput  
+                onChange={handleChange} 
+                name="password" 
+                placeholder='password' 
+                value={inputs.password} 
+                isPassword
+            />
             <button onClick={logIn}>Logar!</button>
             {errors.length > 0 ? errors.map(error => <p style={{color: 'red'}}>{error}</p> ) : null}
 
