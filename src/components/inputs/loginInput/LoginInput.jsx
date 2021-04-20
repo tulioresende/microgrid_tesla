@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {
+    Input,
+ } from "./styles";
 
 const LoginInput = ({
     onChangeFunc,
@@ -10,7 +13,7 @@ const LoginInput = ({
 }) =>{
 
     return(
-        <input 
+        <Input 
             onChange={onChangeFunc} 
             name={name} 
             placeholder={placeholder} 
