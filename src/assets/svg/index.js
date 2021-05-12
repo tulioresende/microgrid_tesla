@@ -4,6 +4,7 @@ import ThreeFourBattery from './ThreeFourBattery';
 import DisconnectedBattery from './DisconnectedBattery';
 import HalfBattery from './HalfBattery';
 import OneFourBattery from './OneFourBattery';
+import ElectricalPanel from './ElectricalPanel';
 
 
 export const SvgIcons = {
@@ -13,6 +14,7 @@ export const SvgIcons = {
     DisconnectedBattery,
     HalfBattery,
     OneFourBattery,
+    ElectricalPanel,
 }
 
 export default SvgIcons;
