@@ -4,18 +4,39 @@ import Cards from '../../components/cards';
 import PageStructure from '../../components/pageStructure/PageStructure';
 import getBatteriesCurrentData from '../../firebase/services/batteries/Batteries';
 import { BatteryStatusTranslate } from '../../utils/functions/Batteries';
+import { sleep } from '../../utils/functions/General';
 
 const Batteries = () =>{
     const [batteriesData, setBatteriesData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [trigger, setTrigger] = useState(false);
 
     useEffect(() =>{
-        setBatteriesData(getBatteriesCurrentData());
-    },[]);
+        const getData = async () =>{
+            const list = await getBatteriesCurrentData();
+            setBatteriesData(list);
+            setIsLoading(false);
+        }
+        getData();
+    },[trigger]);
+
+    const configTrigger = async () =>{
+        while (true){
+            await sleep(5);
+            setTrigger(!trigger);
+        }
+    }   
 
     const renderFunction = () =>{
+        configTrigger();
         return(
-            <>
-                {batteriesData.map((battery) => 
+            <>  
+                {isLoading ? ( 
+                    <h1>
+                        Carregando...
+                    </h1>
+                ):(
+                batteriesData.map((battery) => 
                     <Cards.CardStatusBattery 
                         name={battery.nome} 
                         current={battery.corrente} 
@@ -23,11 +44,10 @@ const Batteries = () =>{
                         status={BatteryStatusTranslate(battery.status)} 
                         chargeState={battery.estadoCarga}
                     />)
-                }
+                )}
             </>
         )
     }
-
     return (
         <PageStructure renderFunction={renderFunction} pageTitle={"Baterias"}/>
     );

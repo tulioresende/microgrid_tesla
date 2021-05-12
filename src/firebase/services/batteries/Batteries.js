@@ -1,14 +1,11 @@
 import firebase from '../../firebase';
 
 
-export const getBatteriesCurrentData = () =>{
+export const getBatteriesCurrentData= async () =>{
     const supervisory = firebase.database().ref('supervisorio/baterias');
-    const batteriesData=[];
-    supervisory.on('value', (snapshot) => {
-      let inputs = snapshot.val();
-      for(let input in inputs){
-        batteriesData.push(inputs[input]);
-      }
+    let batteriesData = [];
+    await supervisory.once('value', (snapshot) => {
+      batteriesData = snapshot.val();
     });
     return batteriesData;
 }
