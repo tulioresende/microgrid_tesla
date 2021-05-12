@@ -9,8 +9,9 @@ export const BatteryStatusTranslate = (valueFromBD) =>{
         case 'descarga':
             return BatteryStatus.discharging;
         case 'desconectado':
-        default :
             return BatteryStatus.disconnected;
+        default :
+            return BatteryStatus.unknown;
     }
 }
 

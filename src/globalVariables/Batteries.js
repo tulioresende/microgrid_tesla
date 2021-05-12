@@ -3,4 +3,5 @@ export const BatteryStatus = {
     discharging: 'Descarregando',
     charging: 'Carregando',
     disconnected: 'Desconectado',
+    unknown: `Status desconhecido`,
 };
