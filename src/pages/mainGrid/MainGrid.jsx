@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 
 import Cards from '../../components/cards';
 import PageStructure from '../../components/pageStructure/PageStructure';
-import getBatteriesCurrentData from '../../firebase/services/batteries/Batteries';
+import getMainGridCurrentData from '../../firebase/services/mainGrid/MainGrid';
 import { BatteryStatusTranslate } from '../../utils/functions/Batteries';
 import { sleep } from '../../utils/functions/General';
 
+import {Container} from './styles';
+
 const MainGrid = () =>{
-    const [batteriesData, setBatteriesData] = useState([]);
+    const [mainGridData, setMainGridData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [trigger, setTrigger] = useState(false);
 
     useEffect(() =>{
         const getData = async () =>{
-            const list = await getBatteriesCurrentData();
-            setBatteriesData(list);
+            const list = await getMainGridCurrentData();
+            setMainGridData(list);
             setIsLoading(false);
         }
         getData();
@@ -36,20 +38,16 @@ const MainGrid = () =>{
                         Carregando...
                     </h1>
                 ):(
-                batteriesData.map((battery) => 
-                    <Cards.CardStatusBattery 
-                        name={battery.nome} 
-                        current={battery.corrente} 
-                        voltage={battery.tensao} 
-                        status={BatteryStatusTranslate(battery.status)} 
-                        chargeState={battery.estadoCarga}
-                    />)
+                <Container>
+                    <Cards.CardStatusMainGrid data={mainGridData}
+                    />
+                </Container>
                 )}
             </>
         )
     }
     return (
-        <PageStructure renderFunction={renderFunction} pageTitle={"Baterias"}/>
+        <PageStructure renderFunction={renderFunction} pageTitle={"Rede Principal"}/>
     );
 }
 
