@@ -35,6 +35,9 @@ function App() {
           <Route exact path="/batteries">
             <Pages.Batteries />
           </Route>
+          <Route exact path="/maingrid">
+            <Pages.MainGrid />
+          </Route>
           <Route>
             <Pages.NotFound/>
           </Route>
