@@ -1,8 +1,9 @@
-import BarChart from './BarChart';
-
+import BarChart from "./BarChart";
+import LineChart from "./LineChart";
 
 const Charts = {
-    BarChart,
-}
+  BarChart,
+  LineChart,
+};
 
 export default Charts;

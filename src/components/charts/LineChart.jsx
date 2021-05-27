@@ -6,26 +6,25 @@ export const BarChart = ({ width, height }) => {
   const data = React.useMemo(
     () => [
       {
-        label: "corrente",
+        label: "Series 1",
         data: [
-          { x: `1am`, y: 15 },
-          { x: 2, y: 15 },
-          { x: 3, y: 15 },
+          { x: 1, y: 10 },
+          { x: 2, y: 10 },
+          { x: 3, y: 10 },
         ],
       },
       {
-        label: "tensao",
+        label: "Series 2",
         data: [
-          { x: `1am`, y: 20 },
+          { x: 1, y: 20 },
           { x: 2, y: 20 },
           { x: 3, y: 20 },
-          { x: 4, y: 25 },
         ],
       },
       {
-        label: "potencia",
+        label: "Series 3",
         data: [
-          { x: `1am`, y: 30 },
+          { x: 1, y: 30 },
           { x: 2, y: 30 },
           { x: 3, y: 30 },
         ],
@@ -34,17 +33,10 @@ export const BarChart = ({ width, height }) => {
     []
   );
 
-  const series = React.useMemo(
-    () => ({
-      type: "bar",
-    }),
-    []
-  );
-
   const axes = React.useMemo(
     () => [
-      { primary: true, type: "ordinal", position: "bottom" },
-      { position: "left", type: "linear", stacked: false },
+      { primary: true, type: "linear", position: "bottom" },
+      { type: "linear", position: "left" },
     ],
     []
   );
@@ -56,7 +48,7 @@ export const BarChart = ({ width, height }) => {
         height: `${height}px`,
       }}
     >
-      <Chart data={data} axes={axes} series={series} tooltip />
+      <Chart data={data} axes={axes} tooltip />
     </div>
   );
 };
