@@ -1,9 +1,8 @@
+import React from "react";
 
-import React from 'react';
-
-const PowerLine = ({width=80, height=100, color="blue"}) =>{
-    return(
-        <svg
+const PowerLine = ({ width = 80, height = 100, color = "blue" }) => {
+  return (
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width={`${width}`}
       height={`${height}`}
@@ -16,7 +15,7 @@ const PowerLine = ({width=80, height=100, color="blue"}) =>{
         <path d="M53.133 65.684a1.469 1.469 0 00-1.18-.598H50.04l1.36-4.363a1.467 1.467 0 00-.962-1.836 1.469 1.469 0 00-1.835.965l-1.954 6.261a1.48 1.48 0 00.22 1.305c.277.375.714.598 1.179.598h1.914l-1.36 4.363A1.463 1.463 0 0050 74.277c.625 0 1.203-.402 1.398-1.027l1.954-6.266a1.474 1.474 0 00-.22-1.3zm0 0"></path>
       </g>
     </svg>
-    )
-}
+  );
+};
 
 export default PowerLine;
