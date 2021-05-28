@@ -2,7 +2,7 @@ import React from "react";
 import { Chart } from "react-charts";
 import Proptypes from "prop-types";
 
-export const BarChart = ({ width, height }) => {
+export const BarChart = ({ width, height, children }) => {
   const data = React.useMemo(
     () => [
       {
@@ -54,14 +54,20 @@ export const BarChart = ({ width, height }) => {
       style={{
         width: `${width}px`,
         height: `${height}px`,
+        textAlign: `center`,
       }}
     >
+      {children}
       <Chart data={data} axes={axes} series={series} tooltip />
     </div>
   );
 };
 
 BarChart.propTypes = {
+  children: Proptypes.oneOfType([
+    Proptypes.arrayOf(Proptypes.node),
+    Proptypes.node,
+  ]),
   width: Proptypes.number.isRequired,
   height: Proptypes.number.isRequired,
   dataVector: Proptypes.arrayOf(Proptypes.object),

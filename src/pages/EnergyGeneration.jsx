@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
-import Cards from "../../components/cards";
-import PageStructure from "../../components/pageStructure/PageStructure";
-import getBatteriesCurrentData from "../../firebase/services/batteries/Batteries";
-import { BatteryStatusTranslate } from "../../utils/functions/Batteries";
-import { sleep } from "../../utils/functions/General";
+import BarChart from "../components/charts/BarChart";
+import PageStructure from "../components/pageStructure/PageStructure";
+import getBatteriesCurrentData from "../firebase/services/batteries/Batteries";
+import { sleep } from "../utils/functions/General";
+
+const GraphTitle = styled.text`
+  font-size: 36px;
+`;
 
 const EnergyGeneration = () => {
   const [batteriesData, setBatteriesData] = useState([]);
@@ -34,15 +38,13 @@ const EnergyGeneration = () => {
         {isLoading ? (
           <h1>Carregando...</h1>
         ) : (
-          batteriesData.map((battery) => (
-            <Cards.CardStatusBattery
-              name={battery.nome}
-              current={battery.corrente}
-              voltage={battery.tensao}
-              status={BatteryStatusTranslate(battery.status)}
-              chargeState={battery.estadoCarga}
-            />
-          ))
+          <>
+            <BarChart width={200} height={200}>
+              <GraphTitle>texto</GraphTitle>
+            </BarChart>
+            <BarChart width={200} height={200} />
+            <BarChart width={200} height={200} />
+          </>
         )}
       </>
     );
