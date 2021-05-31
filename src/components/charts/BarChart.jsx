@@ -1,38 +1,16 @@
 import React from "react";
 import { Chart } from "react-charts";
 import Proptypes from "prop-types";
+import styled from "styled-components";
 
-export const BarChart = ({ width, height }) => {
-  const data = React.useMemo(
-    () => [
-      {
-        label: "corrente",
-        data: [
-          { x: `1am`, y: 15 },
-          { x: 2, y: 15 },
-          { x: 3, y: 15 },
-        ],
-      },
-      {
-        label: "tensao",
-        data: [
-          { x: `1am`, y: 20 },
-          { x: 2, y: 20 },
-          { x: 3, y: 20 },
-          { x: 4, y: 25 },
-        ],
-      },
-      {
-        label: "potencia",
-        data: [
-          { x: `1am`, y: 30 },
-          { x: 2, y: 30 },
-          { x: 3, y: 30 },
-        ],
-      },
-    ],
-    []
-  );
+export const BarChart = ({ width, height, dataVector, children }) => {
+  const Container = styled.div`
+    text-align: center;
+    flex-direction: column;
+    height: ${height}px;
+    width: ${width}px;
+  `;
+  const data = React.useMemo(() => dataVector, [dataVector]);
 
   const series = React.useMemo(
     () => ({
@@ -50,18 +28,18 @@ export const BarChart = ({ width, height }) => {
   );
 
   return (
-    <div
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-      }}
-    >
+    <Container>
+      {children}
       <Chart data={data} axes={axes} series={series} tooltip />
-    </div>
+    </Container>
   );
 };
 
 BarChart.propTypes = {
+  children: Proptypes.oneOfType([
+    Proptypes.arrayOf(Proptypes.node),
+    Proptypes.node,
+  ]),
   width: Proptypes.number.isRequired,
   height: Proptypes.number.isRequired,
   dataVector: Proptypes.arrayOf(Proptypes.object),

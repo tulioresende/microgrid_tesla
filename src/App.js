@@ -1,45 +1,43 @@
-import React, { useContext } from 'react';
-import './App.css';
-import Pages from './pages';
-import { 
-  Route,   
-  BrowserRouter as Router ,
-  Switch,
-} from 'react-router-dom';
-import { firebaseAuth } from './provider/AuthProvider';
-
+import React, { useContext } from "react";
+import "./App.css";
+import Pages from "./pages";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { firebaseAuth } from "./provider/AuthProvider";
 
 function App() {
-
   const { getToken } = useContext(firebaseAuth);
   const token = getToken();
-  
-  if (token === null){
+  const { Login, Dashboards, Batteries, MainGrid, EnergyGeneration, NotFound } =
+    Pages;
+
+  if (token === null) {
     return (
       <Router>
         <Switch>
           <Route>
-            <Pages.Login />
+            <Login />
           </Route>
         </Switch>
       </Router>
     );
-  }
-  else{
-    return(
+  } else {
+    return (
       <Router>
         <Switch>
           <Route exact path="/dashboards">
-            <Pages.Dashboards/>
+            <Dashboards />
           </Route>
           <Route exact path="/batteries">
-            <Pages.Batteries />
+            <Batteries />
           </Route>
           <Route exact path="/maingrid">
-            <Pages.MainGrid />
+            <MainGrid />
+          </Route>
+          <Route exact path="/energy_generation">
+            <EnergyGeneration />
           </Route>
           <Route>
-            <Pages.NotFound/>
+            <NotFound />
           </Route>
         </Switch>
       </Router>

@@ -19,12 +19,12 @@ const Dashboards = () => {
         <DashboardItem Title={`Rede de Dist.`} routeAddress={"mainGrid"}>
           <PowerLine color={Colors.green} />
         </DashboardItem>
-        <DashboardItem Title={`Geração Energia`} routeAddress={"batteries"}>
+        <DashboardItem
+          Title={`Geração Energia`}
+          routeAddress={"energy_generation"}
+        >
           <EnergyGeneration color={Colors.green} />
         </DashboardItem>
-
-        <BarChart width={200} height={200} />
-        <LineChart width={200} height={200} />
       </>
     );
   };
