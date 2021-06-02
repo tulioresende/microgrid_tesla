@@ -1,37 +1,17 @@
 import React from "react";
 import { Chart } from "react-charts";
 import Proptypes from "prop-types";
+import styled from "styled-components";
 
-export const BarChart = ({ width, height }) => {
-  const data = React.useMemo(
-    () => [
-      {
-        label: "Series 1",
-        data: [
-          { x: 1, y: 10 },
-          { x: 2, y: 10 },
-          { x: 3, y: 10 },
-        ],
-      },
-      {
-        label: "Series 2",
-        data: [
-          { x: 1, y: 20 },
-          { x: 2, y: 20 },
-          { x: 3, y: 20 },
-        ],
-      },
-      {
-        label: "Series 3",
-        data: [
-          { x: 1, y: 30 },
-          { x: 2, y: 30 },
-          { x: 3, y: 30 },
-        ],
-      },
-    ],
-    []
-  );
+export const LineChart = ({ width, height, dataVector, children }) => {
+  const Container = styled.div`
+    text-align: center;
+    flex-direction: column;
+    height: ${height}px;
+    width: ${width}px;
+  `;
+
+  const data = React.useMemo(() => dataVector, [dataVector]);
 
   const axes = React.useMemo(
     () => [
@@ -42,21 +22,27 @@ export const BarChart = ({ width, height }) => {
   );
 
   return (
-    <div
-      style={{
-        width: `${width}px`,
-        height: `${height}px`,
-      }}
-    >
+    <Container>
+      {children}
       <Chart data={data} axes={axes} tooltip />
-    </div>
+    </Container>
   );
 };
 
-BarChart.propTypes = {
+LineChart.propTypes = {
   width: Proptypes.number.isRequired,
   height: Proptypes.number.isRequired,
   dataVector: Proptypes.arrayOf(Proptypes.object),
 };
 
-export default BarChart;
+LineChart.propTypes = {
+  children: Proptypes.oneOfType([
+    Proptypes.arrayOf(Proptypes.node),
+    Proptypes.node,
+  ]),
+  width: Proptypes.number.isRequired,
+  height: Proptypes.number.isRequired,
+  dataVector: Proptypes.arrayOf(Proptypes.object),
+};
+
+export default LineChart;
