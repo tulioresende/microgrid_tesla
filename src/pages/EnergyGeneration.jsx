@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import BarChart from "../components/charts/BarChart";
 import PageStructure from "../components/pageStructure/PageStructure";
-import { generateOneBarDataMock } from "../utils/functions/mocks";
+import { generateOneGroupDataMock } from "../utils/functions/mocks";
 
 const GraphTitle = styled.text`
   font-size: 24px;
@@ -40,26 +40,32 @@ const EnergyGeneration = () => {
     getData();
   }, [trigger]);
 
-  const data = generateOneBarDataMock({
-    label: "energia gerada",
-    xLabel: `01/11`,
-    yMaxValue: 1000,
-    length: 12,
-  });
+  const data = [
+    generateOneGroupDataMock({
+      label: "energia gerada",
+      xLabel: `01/11`,
+      yMaxValue: 1000,
+      length: 12,
+    }),
+  ];
 
-  const dataDay = generateOneBarDataMock({
-    label: "energia gerada",
-    xLabel: `1am`,
-    yMaxValue: 200,
-    length: 24,
-  });
+  const dataDay = [
+    generateOneGroupDataMock({
+      label: "energia gerada",
+      xLabel: `1am`,
+      yMaxValue: 200,
+      length: 24,
+    }),
+  ];
 
-  const dataMonth = generateOneBarDataMock({
-    label: "energia gerada",
-    xLabel: `1/3`,
-    yMaxValue: 10,
-    length: 31,
-  });
+  const dataMonth = [
+    generateOneGroupDataMock({
+      label: "energia gerada",
+      xLabel: `1/3`,
+      yMaxValue: 10,
+      length: 31,
+    }),
+  ];
 
   const graphHeight = 240;
   const graphWidth = 1000;
