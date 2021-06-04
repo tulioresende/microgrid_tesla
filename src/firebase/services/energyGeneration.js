@@ -1,12 +1,12 @@
 import { sumArrayObjectsByProperty } from "../../utils/functions/Array";
 import firebase from "../firebase";
 
-export const getEnergyGenerationDataDaily = async () => {
+export const getEnergyGenerationDataDaily = async (date) => {
   const supervisory = firebase
     .database()
     .ref("supervisorio/geracaoFV/diario")
-    .orderByChild("day")
-    .equalTo(5);
+    .orderByChild("date")
+    .equalTo(date);
   let energyGenerationArray = [];
   await supervisory.once("value").then(function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
@@ -15,7 +15,7 @@ export const getEnergyGenerationDataDaily = async () => {
   });
 
   const dailySum = sumArrayObjectsByProperty(energyGenerationArray);
-  return energyGenerationArray;
+  return dailySum;
 };
 
 export default getEnergyGenerationDataDaily;

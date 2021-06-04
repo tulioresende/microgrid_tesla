@@ -1,3 +1,5 @@
+import { array } from "prop-types";
+
 export const sumArrayObjectsByProperty = (arrayTa) => {
   var result = [];
   arrayTa.reduce(function (res, value) {
@@ -9,4 +11,22 @@ export const sumArrayObjectsByProperty = (arrayTa) => {
     return res;
   }, {});
   return result;
+};
+
+export const generateArrayToChartBar = (originArray, label, xLabel, yLabel) => {
+  const array = [];
+
+  originArray.map((measure) => {
+    array.push({
+      x: measure[xLabel],
+      y: measure[yLabel],
+    });
+  });
+
+  return [
+    {
+      label,
+      data: array,
+    },
+  ];
 };
