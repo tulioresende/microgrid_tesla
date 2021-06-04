@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import BarChart from "../components/charts/BarChart";
 import PageStructure from "../components/pageStructure/PageStructure";
+import getEnergyGenerationDataDaily from "../firebase/services/energyGeneration";
 import { generateOneGroupDataMock } from "../utils/functions/mocks";
 
 const GraphTitle = styled.text`
@@ -31,14 +32,16 @@ const SubContainer = styled.div`
 
 const EnergyGeneration = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [trigger, setTrigger] = useState(false);
+  const [energyDailyData, setEnergyDailyData] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
+      const list = await getEnergyGenerationDataDaily();
+      setEnergyDailyData(list);
       setIsLoading(false);
     };
     getData();
-  }, [trigger]);
+  }, []);
 
   const data = [
     generateOneGroupDataMock({
@@ -78,6 +81,12 @@ const EnergyGeneration = () => {
         ) : (
           <Container>
             <SubContainer>
+              <button
+                onClick={() => {
+                  alert(JSON.stringify(energyDailyData));
+                  alert(energyDailyData.length);
+                }}
+              />
               <BarChart
                 width={graphWidth / 2}
                 height={graphHeight}
