@@ -1,4 +1,4 @@
-import { getMonthNameByNumber } from "../utils/functions/Date";
+import { getHourAMPM, getMonthNameByNumber } from "../utils/functions/Date";
 
 export default class EneryGeneration {
   constructor(array) {
@@ -10,6 +10,15 @@ export default class EneryGeneration {
 
     this.array.map((obj) => {
       newArray.push({ ...obj, month: getMonthNameByNumber(obj.group) });
+    });
+    return newArray;
+  };
+
+  getHourlyData = () => {
+    const newArray = [];
+
+    this.array.map((obj) => {
+      newArray.push({ ...obj, hour: getHourAMPM(obj.group) });
     });
     return newArray;
   };

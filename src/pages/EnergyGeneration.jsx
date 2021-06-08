@@ -70,22 +70,25 @@ const EnergyGeneration = () => {
   useEffect(() => {
     const getData = async () => {
       const listHourly = await getEnergyGenerationDataHourly(currentDate);
-      const arrayHourly = generateArrayToChart(listHourly);
+      const energyGenerationHourly = new EneryGeneration(listHourly);
+      const arrayHourly = generateArrayToChart(
+        energyGenerationHourly.getHourlyData(),
+        `hour`
+      );
 
       const listDaily = await getEnergyGenerationDataDaily(currentMonth);
       const arrayDaily = generateArrayToChart(listDaily);
 
       const listMonthly = await getEnergyGenerationDataMonthly(currentYear);
       const energyGenerationMonthly = new EneryGeneration(listMonthly);
-
-      const arrayYearly = generateArrayToChart(
+      const arrayMonthly = generateArrayToChart(
         energyGenerationMonthly.getMonthData(),
         `month`
       );
 
       setEnergyHourlyData(arrayHourly);
       setEnergyDailyData(arrayDaily);
-      setEnergyMonthlyData(arrayYearly);
+      setEnergyMonthlyData(arrayMonthly);
       setIsLoading(false);
     };
     getData();

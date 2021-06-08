@@ -37,4 +37,10 @@ export const getMonthNameByNumber = (monthNumber) => {
   }
 };
 
+export const getHourAMPM = (hour) => {
+  if (hour === 0) return `12pm`;
+
+  return hour <= 12 ? hour + `am` : hour + `pm`;
+};
+
 export default getDateFormatted;
