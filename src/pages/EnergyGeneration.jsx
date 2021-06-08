@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import EneryGeneration from "../classes/EnergyGeneration";
 
 import BarChart from "../components/charts/BarChart";
 import PageStructure from "../components/pageStructure/PageStructure";
 import {
+  getEnergyGenerationDataHourly,
   getEnergyGenerationDataDaily,
   getEnergyGenerationDataMonthly,
-  getEnergyGenerationDataYearly,
 } from "../firebase/services/energyGeneration";
 import { generateArrayToChartBar } from "../utils/functions/Array";
 import {
@@ -40,9 +41,9 @@ const SubContainer = styled.div`
 
 const EnergyGeneration = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [energyHourlyData, setEnergyHourlyData] = useState([]);
   const [energyDailyData, setEnergyDailyData] = useState([]);
   const [energyMonthlyData, setEnergyMonthlyData] = useState([]);
-  const [energyYearlyData, setEnergyYearlyData] = useState([]);
 
   const graphHeight = 240;
   const graphWidth = 1000;
@@ -56,11 +57,11 @@ const EnergyGeneration = () => {
     todayDate.getDate()
   );
 
-  const generateArrayToChart = (array) => {
+  const generateArrayToChart = (array, propertyGroup) => {
     const arrayRet = generateArrayToChartBar(
       array,
       "energia (kWh)",
-      `group`,
+      propertyGroup || `group`,
       `total`
     );
     return arrayRet;
@@ -68,18 +69,23 @@ const EnergyGeneration = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const listDaily = await getEnergyGenerationDataDaily(currentDate);
+      const listHourly = await getEnergyGenerationDataHourly(currentDate);
+      const arrayHourly = generateArrayToChart(listHourly);
+
+      const listDaily = await getEnergyGenerationDataDaily(currentMonth);
       const arrayDaily = generateArrayToChart(listDaily);
 
-      const listMonthly = await getEnergyGenerationDataMonthly(currentMonth);
-      const arrayMonthly = generateArrayToChart(listMonthly);
+      const listMonthly = await getEnergyGenerationDataMonthly(currentYear);
+      const energyGenerationMonthly = new EneryGeneration(listMonthly);
 
-      const listYearly = await getEnergyGenerationDataYearly(currentYear);
-      const arrayYearly = generateArrayToChart(listYearly);
+      const arrayYearly = generateArrayToChart(
+        energyGenerationMonthly.getMonthData(),
+        `month`
+      );
 
+      setEnergyHourlyData(arrayHourly);
       setEnergyDailyData(arrayDaily);
-      setEnergyMonthlyData(arrayMonthly);
-      setEnergyYearlyData(arrayYearly);
+      setEnergyMonthlyData(arrayYearly);
       setIsLoading(false);
     };
     getData();
@@ -100,12 +106,12 @@ const EnergyGeneration = () => {
             <SubContainer>
               {renderGraph(
                 `Energia Gerada em ${currentYear} - kWh`,
-                energyYearlyData,
+                energyMonthlyData,
                 graphWidth / 2
               )}
               {renderGraph(
                 `Energia Gerada hoje - kWh`,
-                energyDailyData,
+                energyHourlyData,
                 graphWidth / 2
               )}
             </SubContainer>
@@ -114,7 +120,7 @@ const EnergyGeneration = () => {
                 `Energia Gerada em ${getMonthNameByNumber(
                   currentMonth
                 )} - kWh `,
-                energyMonthlyData,
+                energyDailyData,
                 graphWidth
               )}
             </SubContainer>

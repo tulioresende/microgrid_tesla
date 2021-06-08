@@ -1,7 +1,7 @@
 import { sumArrayObjectsByProperty } from "../../utils/functions/Array";
 import firebase from "../firebase";
 
-export const getEnergyGenerationDataDaily = async (date) => {
+export const getEnergyGenerationDataHourly = async (date) => {
   const data = await getEnergyGenerationData(`date`, date);
 
   const dailySum = sumArrayObjectsByProperty(data, "hour", "energy_kwh");
@@ -9,20 +9,20 @@ export const getEnergyGenerationDataDaily = async (date) => {
   return dailySum;
 };
 
-export const getEnergyGenerationDataMonthly = async (month) => {
+export const getEnergyGenerationDataDaily = async (month) => {
   const data = await getEnergyGenerationData(`month`, month);
 
-  const dailySum = sumArrayObjectsByProperty(data, "day", "energy_kwh");
+  const monthlySum = sumArrayObjectsByProperty(data, "day", "energy_kwh");
 
-  return dailySum;
+  return monthlySum;
 };
 
-export const getEnergyGenerationDataYearly = async (year) => {
+export const getEnergyGenerationDataMonthly = async (year) => {
   const data = await getEnergyGenerationData(`year`, year);
 
-  const dailySum = sumArrayObjectsByProperty(data, "month", "energy_kwh");
+  const yearlySum = sumArrayObjectsByProperty(data, "month", "energy_kwh");
 
-  return dailySum;
+  return yearlySum;
 };
 
 const getEnergyGenerationData = async (filterProperty, value) => {
