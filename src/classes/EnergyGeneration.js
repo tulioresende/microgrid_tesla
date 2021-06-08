@@ -1,8 +1,14 @@
-import { getHourAMPM, getMonthNameByNumber } from "../utils/functions/Date";
+import {
+  getDayOfWeek,
+  getHourAMPM,
+  getMonthNameByNumber,
+} from "../utils/functions/Date";
 
 export default class EneryGeneration {
-  constructor(array) {
+  constructor(array, month, year) {
     this.array = array;
+    this.month = month;
+    this.year = year;
   }
 
   getMonthData = () => {
@@ -19,6 +25,23 @@ export default class EneryGeneration {
 
     this.array.map((obj) => {
       newArray.push({ ...obj, hour: getHourAMPM(obj.group) });
+    });
+    return newArray;
+  };
+
+  getDailyData = () => {
+    const newArray = [];
+
+    this.array.map((obj) => {
+      newArray.push({
+        ...obj,
+        day:
+          getDayOfWeek(
+            new Date(this.year, this.month - 1, obj.group)
+          ).substring(0, 3) +
+          `/` +
+          obj.group,
+      });
     });
     return newArray;
   };

@@ -51,11 +51,8 @@ const EnergyGeneration = () => {
   const todayDate = new Date();
   const currentMonth = todayDate.getMonth() + 1;
   const currentYear = todayDate.getFullYear();
-  const currentDate = getDateFormatted(
-    currentYear,
-    currentMonth,
-    todayDate.getDate()
-  );
+  const currentDay = todayDate.getDate();
+  const currentDate = getDateFormatted(currentYear, currentMonth, currentDay);
 
   const generateArrayToChart = (array, propertyGroup) => {
     const arrayRet = generateArrayToChartBar(
@@ -77,7 +74,15 @@ const EnergyGeneration = () => {
       );
 
       const listDaily = await getEnergyGenerationDataDaily(currentMonth);
-      const arrayDaily = generateArrayToChart(listDaily);
+      const energyGenerationDaily = new EneryGeneration(
+        listDaily,
+        currentMonth,
+        currentYear
+      );
+      const arrayDaily = generateArrayToChart(
+        energyGenerationDaily.getDailyData(),
+        `day`
+      );
 
       const listMonthly = await getEnergyGenerationDataMonthly(currentYear);
       const energyGenerationMonthly = new EneryGeneration(listMonthly);
