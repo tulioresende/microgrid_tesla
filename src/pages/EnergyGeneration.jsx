@@ -3,9 +3,13 @@ import styled from "styled-components";
 
 import BarChart from "../components/charts/BarChart";
 import PageStructure from "../components/pageStructure/PageStructure";
-import getEnergyGenerationDataDaily from "../firebase/services/energyGeneration";
+import {
+  getEnergyGenerationDataDaily,
+  getEnergyGenerationDataMonthly,
+  getEnergyGenerationDataYearly,
+} from "../firebase/services/energyGeneration";
 import { generateArrayToChartBar } from "../utils/functions/Array";
-import { generateOneGroupDataMock } from "../utils/functions/mocks";
+import { getDateFormatted } from "../utils/functions/Date";
 
 const GraphTitle = styled.text`
   font-size: 24px;
@@ -34,42 +38,50 @@ const SubContainer = styled.div`
 const EnergyGeneration = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [energyDailyData, setEnergyDailyData] = useState([]);
+  const [energyMonthlyData, setEnergyMonthlyData] = useState([]);
+  const [energyYearlyData, setEnergyYearlyData] = useState([]);
+
+  const graphHeight = 240;
+  const graphWidth = 1000;
+
+  const todayDate = new Date();
+  const currentMonth = todayDate.getMonth() + 1;
+  const currentYear = todayDate.getFullYear();
+  const currentDate = getDateFormatted(
+    currentYear,
+    currentMonth,
+    todayDate.getDate()
+  );
+
+  const generateArrayToChart = (array) => {
+    const arrayRet = generateArrayToChartBar(
+      array,
+      "energia (kWh)",
+      `group`,
+      `total`
+    );
+    return arrayRet;
+  };
 
   useEffect(() => {
     const getData = async () => {
-      const list = await getEnergyGenerationDataDaily("20210604");
-      const arrayDaily = generateArrayToChartBar(
-        list,
-        "energia (kWh)",
-        `hour`,
-        `total`
-      );
+      alert(currentDate);
+      const listDaily = await getEnergyGenerationDataDaily(currentDate);
+      const arrayDaily = generateArrayToChart(listDaily);
+
+      const listMonthly = await getEnergyGenerationDataMonthly(currentMonth);
+      const arrayMonthly = generateArrayToChart(listMonthly);
+
+      const listYearly = await getEnergyGenerationDataYearly(currentYear);
+      const arrayYearly = generateArrayToChart(listYearly);
+
       setEnergyDailyData(arrayDaily);
+      setEnergyMonthlyData(arrayMonthly);
+      setEnergyYearlyData(arrayYearly);
       setIsLoading(false);
     };
     getData();
   }, []);
-
-  const data = [
-    generateOneGroupDataMock({
-      label: "energia gerada",
-      xLabel: `01/11`,
-      yMaxValue: 1000,
-      length: 12,
-    }),
-  ];
-
-  const dataMonth = [
-    generateOneGroupDataMock({
-      label: "energia gerada",
-      xLabel: `1/3`,
-      yMaxValue: 10,
-      length: 31,
-    }),
-  ];
-
-  const graphHeight = 240;
-  const graphWidth = 1000;
 
   const renderGraph = (title, dataVector, width) => (
     <BarChart width={width} height={graphHeight} dataVector={dataVector}>
@@ -84,7 +96,11 @@ const EnergyGeneration = () => {
         ) : (
           <Container>
             <SubContainer>
-              {renderGraph(`Energia Gerada (kWh) - ano`, data, graphWidth / 2)}
+              {renderGraph(
+                `Energia Gerada (kWh) - ano`,
+                energyYearlyData,
+                graphWidth / 2
+              )}
               {renderGraph(
                 `Energia Gerada (kWh) - dia`,
                 energyDailyData,
@@ -92,7 +108,11 @@ const EnergyGeneration = () => {
               )}
             </SubContainer>
             <SubContainer>
-              {renderGraph(`Energia Gerada (kWh) - mês`, dataMonth, graphWidth)}
+              {renderGraph(
+                `Energia Gerada (kWh) - mês`,
+                energyMonthlyData,
+                graphWidth
+              )}
             </SubContainer>
           </Container>
         )}

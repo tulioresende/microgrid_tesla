@@ -1,13 +1,15 @@
-import { array } from "prop-types";
-
-export const sumArrayObjectsByProperty = (arrayTa) => {
+export const sumArrayObjectsByProperty = (
+  array,
+  propertyName,
+  propertyToSum
+) => {
   var result = [];
-  arrayTa.reduce(function (res, value) {
-    if (!res[value.hour]) {
-      res[value.hour] = { hour: value.hour, total: 0 };
-      result.push(res[value.hour]);
+  array.reduce(function (res, value) {
+    if (!res[value[propertyName]]) {
+      res[value[propertyName]] = { group: value[propertyName], total: 0 };
+      result.push(res[value[propertyName]]);
     }
-    res[value.hour].total += value.energy_kwh;
+    res[value[propertyName]].total += value[propertyToSum];
     return res;
   }, {});
   return result;
