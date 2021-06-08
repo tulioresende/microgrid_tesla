@@ -9,7 +9,10 @@ import {
   getEnergyGenerationDataYearly,
 } from "../firebase/services/energyGeneration";
 import { generateArrayToChartBar } from "../utils/functions/Array";
-import { getDateFormatted } from "../utils/functions/Date";
+import {
+  getDateFormatted,
+  getMonthNameByNumber,
+} from "../utils/functions/Date";
 
 const GraphTitle = styled.text`
   font-size: 24px;
@@ -65,7 +68,6 @@ const EnergyGeneration = () => {
 
   useEffect(() => {
     const getData = async () => {
-      alert(currentDate);
       const listDaily = await getEnergyGenerationDataDaily(currentDate);
       const arrayDaily = generateArrayToChart(listDaily);
 
@@ -97,19 +99,21 @@ const EnergyGeneration = () => {
           <Container>
             <SubContainer>
               {renderGraph(
-                `Energia Gerada (kWh) - ano`,
+                `Energia Gerada em ${currentYear} - kWh`,
                 energyYearlyData,
                 graphWidth / 2
               )}
               {renderGraph(
-                `Energia Gerada (kWh) - dia`,
+                `Energia Gerada hoje - kWh`,
                 energyDailyData,
                 graphWidth / 2
               )}
             </SubContainer>
             <SubContainer>
               {renderGraph(
-                `Energia Gerada (kWh) - mês`,
+                `Energia Gerada em ${getMonthNameByNumber(
+                  currentMonth
+                )} - kWh `,
                 energyMonthlyData,
                 graphWidth
               )}
