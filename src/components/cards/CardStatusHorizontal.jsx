@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -35,4 +36,14 @@ export const Line = styled.div`
   justify-content: space-between;
 `;
 
-export default Container;
+const CardStatusHorizontal = ({ title, value, children }) => {
+  return (
+    <Container>
+      <TitleName>{title}</TitleName>
+      <Title>{`Status: ${value}`}</Title>
+      {children}
+    </Container>
+  );
+};
+
+export default CardStatusHorizontal;

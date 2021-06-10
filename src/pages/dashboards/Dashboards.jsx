@@ -26,7 +26,7 @@ const Dashboards = () => {
         </DashboardItem>
         <DashboardItem
           Title={`Meio Ambiente`}
-          routeAddress={"energy_generation"}
+          routeAddress={"environment_impacts"}
         >
           <GreenEarth color={Colors.green} />
         </DashboardItem>
