@@ -9,6 +9,8 @@ import EnergyGeneration from "./EnergyGeneration";
 import Battery from "./Battery";
 import PowerLine from "./PowerLine";
 import GreenEarth from "./GreenEarth";
+import Trees from "./Trees";
+import Co2Save from "./Co2Save";
 
 export const SvgIcons = {
   EmptyBattery,
@@ -22,6 +24,8 @@ export const SvgIcons = {
   Battery,
   PowerLine,
   GreenEarth,
+  Trees,
+  Co2Save,
 };
 
 export default SvgIcons;

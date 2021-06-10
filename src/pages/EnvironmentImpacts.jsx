@@ -3,6 +3,10 @@ import styled from "styled-components";
 import CardStatusHorizontal from "../components/cards/CardStatusHorizontal";
 
 import PageStructure from "../components/pageStructure/PageStructure";
+import svg from "../assets/svg";
+import Colors from "../globalVariables/Colors";
+
+const { Co2Save, Trees } = svg;
 
 const GeneralContainer = styled.div`
   width: 100%;
@@ -12,13 +16,6 @@ const GeneralContainer = styled.div`
   flex-direction: column;
 `;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 const EnvironmentImpacts = () => {
   const renderFunction = () => {
     return (
@@ -26,11 +23,12 @@ const EnvironmentImpacts = () => {
         <CardStatusHorizontal
           title={`Quantidade de árvores plantadas:`}
           value={2170}
-        ></CardStatusHorizontal>
-        <CardStatusHorizontal
-          title={`CO2 salvo::`}
-          value={`1280 kg`}
-        ></CardStatusHorizontal>
+        >
+          <Trees color={Colors.green} />
+        </CardStatusHorizontal>
+        <CardStatusHorizontal title={`CO2 salvo:`} value={`1280 kg`}>
+          <Co2Save color={Colors.green} />
+        </CardStatusHorizontal>
       </GeneralContainer>
     );
   };

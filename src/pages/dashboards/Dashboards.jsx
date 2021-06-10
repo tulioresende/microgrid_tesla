@@ -2,7 +2,6 @@ import React from "react";
 
 import DashboardItem from "../../components/dashboardItem/DashboardItem";
 import PageStructure from "../../components/pageStructure/PageStructure";
-import Charts from "../../components/charts";
 import svg from "../../assets/svg";
 import Colors from "../../globalVariables/Colors";
 
