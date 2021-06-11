@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import {
+  getEnergyGenerationInitDate,
+  getEnergyGenerationTotal,
+} from "../../firebase/services/energyGeneration";
 import { getDaysCountBetweenDates } from "../../utils/functions/Date";
+import calcTreeNumbers, {
+  calcCO2Saving,
+} from "../../utils/functions/Environment";
 
 export const Container = styled.div`
   display: flex;
@@ -41,11 +48,6 @@ const CardStatusHorizontal = ({ title, value, children }) => {
     <Container>
       {children}
       <SubContainer>
-        <button
-          onClick={() =>
-            getDaysCountBetweenDates(new Date(2021, 0, 1), new Date())
-          }
-        />
         <Title>{title}</Title>
         <ValueText>{value}</ValueText>
       </SubContainer>
