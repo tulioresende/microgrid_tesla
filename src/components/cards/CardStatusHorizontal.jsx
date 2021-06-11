@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getDaysCountBetweenDates } from "../../utils/functions/Date";
 
 export const Container = styled.div`
   display: flex;
@@ -40,6 +41,11 @@ const CardStatusHorizontal = ({ title, value, children }) => {
     <Container>
       {children}
       <SubContainer>
+        <button
+          onClick={() =>
+            getDaysCountBetweenDates(new Date(2021, 0, 1), new Date())
+          }
+        />
         <Title>{title}</Title>
         <ValueText>{value}</ValueText>
       </SubContainer>

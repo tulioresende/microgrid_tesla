@@ -37,6 +37,14 @@ export const getMonthNameByNumber = (monthNumber) => {
   }
 };
 
+export const getDaysCountBetweenDates = (initDate, endDate) => {
+  const diffTime = endDate - initDate;
+
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  alert(diffDays);
+  return diffDays;
+};
+
 export const getHourAMPM = (hour) => {
   if (hour === 0) return `12pm`;
 
