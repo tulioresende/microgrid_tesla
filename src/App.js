@@ -7,8 +7,15 @@ import { firebaseAuth } from "./provider/AuthProvider";
 function App() {
   const { getToken } = useContext(firebaseAuth);
   const token = getToken();
-  const { Login, Dashboards, Batteries, MainGrid, EnergyGeneration, NotFound } =
-    Pages;
+  const {
+    Login,
+    Dashboards,
+    Batteries,
+    MainGrid,
+    EnergyGeneration,
+    NotFound,
+    EnvironmentImpacts,
+  } = Pages;
 
   if (token === null) {
     return (
@@ -35,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/energy_generation">
             <EnergyGeneration />
+          </Route>
+          <Route exact path="/environment_impacts">
+            <EnvironmentImpacts />
           </Route>
           <Route>
             <NotFound />

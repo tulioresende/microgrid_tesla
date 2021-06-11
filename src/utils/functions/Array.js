@@ -15,6 +15,14 @@ export const sumArrayObjectsByProperty = (
   return result;
 };
 
+export const sumArrayObjects = (array, propertyToSum) => {
+  var total = 0;
+  array.map((obj) => {
+    total += obj[propertyToSum];
+  }, {});
+  return total;
+};
+
 export const generateArrayToChartBar = (originArray, label, xLabel, yLabel) => {
   const array = [];
 

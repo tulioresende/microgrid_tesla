@@ -4,6 +4,7 @@ import Batteries from "./batteries/Batteries";
 import Login from "./login/Login";
 import MainGrid from "./mainGrid/MainGrid";
 import EnergyGeneration from "./EnergyGeneration";
+import EnvironmentImpacts from "./EnvironmentImpacts";
 
 const Pages = {
   Dashboards,
@@ -12,6 +13,7 @@ const Pages = {
   Login,
   MainGrid,
   EnergyGeneration,
+  EnvironmentImpacts,
 };
 
 export default Pages;
