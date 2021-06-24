@@ -48,6 +48,16 @@ const getEnergyGenerationTotalData = async () => {
   return energyGenerationArray;
 };
 
+export const removeData = async () => {
+  var ref = firebase.database().ref("supervisorio/geracaoFV/diario");
+  ref.remove();
+};
+
+export const pushData = async () => {
+  var ref = firebase.database().ref("supervisorio/geracaoFV/diario");
+  ref.push({ teste: `teste` });
+};
+
 const getEnergyGenerationData = async (filterProperty, value) => {
   const supervisory = firebase
     .database()

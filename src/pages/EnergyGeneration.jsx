@@ -8,6 +8,8 @@ import {
   getEnergyGenerationDataHourly,
   getEnergyGenerationDataDaily,
   getEnergyGenerationDataMonthly,
+  removeData,
+  pushData,
 } from "../firebase/services/energyGeneration";
 import { generateArrayToChartBar } from "../utils/functions/Array";
 import {
@@ -99,6 +101,12 @@ const EnergyGeneration = () => {
     getData();
   }, []);
 
+  const deleteData = async () => {
+    await removeData();
+    await pushData();
+    alert(`deletou`);
+  };
+
   const renderGraph = (title, dataVector, width) => (
     <BarChart width={width} height={graphHeight} dataVector={dataVector}>
       <GraphTitle>{title}</GraphTitle>
@@ -111,6 +119,7 @@ const EnergyGeneration = () => {
           <h1>Carregando...</h1>
         ) : (
           <Container>
+            <button onClick={deleteData}>apagar dados</button>
             <SubContainer>
               {renderGraph(
                 `Energia Gerada em ${currentYear} - kWh`,
