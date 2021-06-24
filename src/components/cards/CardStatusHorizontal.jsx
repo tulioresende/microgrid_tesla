@@ -1,13 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import {
-  getEnergyGenerationInitDate,
-  getEnergyGenerationTotal,
-} from "../../firebase/services/energyGeneration";
-import { getDaysCountBetweenDates } from "../../utils/functions/Date";
-import calcTreeNumbers, {
-  calcCO2Saving,
-} from "../../utils/functions/Environment";
 
 export const Container = styled.div`
   display: flex;
