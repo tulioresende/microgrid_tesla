@@ -102,8 +102,8 @@ const EnergyGeneration = () => {
   }, []);
 
   const deleteData = async () => {
-    await removeData();
-    await pushData();
+    // await removeData();
+    // await pushData();
     alert(`deletou`);
   };
 
