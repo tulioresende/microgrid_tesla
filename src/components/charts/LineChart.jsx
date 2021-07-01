@@ -3,7 +3,7 @@ import { Chart } from "react-charts";
 import Proptypes from "prop-types";
 import styled from "styled-components";
 
-export const LineChart = ({ width, height, dataVector, children }) => {
+export const LineChart = ({ width, height, dataVector, children, styles }) => {
   const Container = styled.div`
     text-align: center;
     flex-direction: column;
@@ -15,14 +15,18 @@ export const LineChart = ({ width, height, dataVector, children }) => {
 
   const axes = React.useMemo(
     () => [
-      { primary: true, type: "linear", position: "bottom" },
-      { type: "linear", position: "left" },
+      { primary: true, type: `ordinal`, position: "bottom" },
+      {
+        type: "linear",
+        position: "left",
+        tickPadding: -2,
+      },
     ],
     []
   );
 
   return (
-    <Container>
+    <Container style={styles}>
       {children}
       <Chart data={data} axes={axes} tooltip />
     </Container>
