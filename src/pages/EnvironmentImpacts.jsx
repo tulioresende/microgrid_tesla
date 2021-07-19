@@ -30,7 +30,6 @@ const EnvironmentImpacts = () => {
     const calcDays = async () => {
       const initDate = await getEnergyGenerationInitDate();
       const totalEnergyGenerated = await getEnergyGenerationTotal();
-      alert(totalEnergyGenerated);
       const totalDaysOfGeneration = getDaysCountBetweenDates(
         initDate,
         new Date()

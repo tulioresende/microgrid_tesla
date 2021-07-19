@@ -119,7 +119,6 @@ const EnergyGeneration = () => {
           <h1>Carregando...</h1>
         ) : (
           <Container>
-            <button onClick={deleteData}>apagar dados</button>
             <SubContainer>
               {renderGraph(
                 `Energia Gerada em ${currentYear} - kWh`,

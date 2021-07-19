@@ -22,14 +22,14 @@ const Container = styled.div`
 const GraphContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   margin: 16px;
+  width: 100%;
 `;
 
 const PhaseTitle = styled.text`
   font-size: 24px;
-  margin-right: 24px;
 `;
 
 const _Grid = new Grid();
@@ -46,7 +46,6 @@ const MainGrid = () => {
       const recordsPhaseA = await getMainGridLastRecordsDataPhaseA(10);
       const recordsPhaseB = await getMainGridLastRecordsDataPhaseB(10);
       const recordsPhaseC = await getMainGridLastRecordsDataPhaseC(10);
-
       const graphVoltageArray = {
         phaseA: _Grid.getVoltageChartData(recordsPhaseA),
         phaseB: _Grid.getVoltageChartData(recordsPhaseB),
@@ -102,7 +101,6 @@ const MainGrid = () => {
           width={graphWidth}
           height={graphHeight}
           dataVector={gridVoltageData[phase]}
-          styles={{ marginLeft: 16, marginRight: 16 }}
         >
           <text>Tensão (V)</text>
         </LineChart>
@@ -110,7 +108,6 @@ const MainGrid = () => {
           width={graphWidth}
           height={graphHeight}
           dataVector={gridCurrentData[phase]}
-          styles={{ marginLeft: 16, marginRight: 16 }}
         >
           <text>Corrente (A)</text>
         </LineChart>
@@ -118,7 +115,6 @@ const MainGrid = () => {
           width={graphWidth}
           height={graphHeight}
           dataVector={gridActivePowerData[phase]}
-          styles={{ marginLeft: 16, marginRight: 16 }}
         >
           <text>Potência Ativa (W)</text>
         </LineChart>

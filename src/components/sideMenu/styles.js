@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
   background: ${Colors.white};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  transition: 0.8s;
+  transition: 1s;
   top: 0;
   left: 0;
   width: ${(props) => props.width}px;
